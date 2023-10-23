@@ -4,18 +4,23 @@ import { links, social } from "./data";
 import logo from "./logo.svg";
 
 const Navbar = () => {
+  const[nav,setNav]=useState(true);
+  
+  function toggleBtn(){
+    setNav(!nav);
+
+  }
   return (
     <>
       <nav>
         <div className="nav-center">
           <div className="nav-header">
             <img src={logo} alt="myLogo" />
-            <button className="nav-toggle">
+            <button className="nav-toggle" onClick={toggleBtn}>
               <FaBars />
             </button>
           </div>
-
-          <div className="links-container show-container">
+{nav? <div className="links-container show-container">
             <ul className="links">
              {links.map((link)=>{
               const{id,url,text}=link;
@@ -23,7 +28,8 @@ const Navbar = () => {
               <a href={url}>{text}</a>
              </li>})}
             </ul>
-          </div>
+          </div> :''}
+          
 
           <ul className="social-icons">
             {social.map((social)=>{
